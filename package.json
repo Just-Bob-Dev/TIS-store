@@ -1,0 +1,15 @@
+{
+  "name": "tis-database",
+  "version": "1.0.0",
+  "description": "Database to be used for NuU store",
+  "main": "index.js",
+  "scripts": {
+    "test": "ls"
+  },
+  "author": "Robert, Ethan, Zoe, Michael, SamWell",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.17.2",
+    "express": "^4.15.3"
+  }
+}
