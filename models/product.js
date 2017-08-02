@@ -37,6 +37,22 @@ module.exports.createProduct = function(activity, callback){
   Product.create(activity, callback);
 }
 
+module.exports.updateProduct = function(id, product, options, callback) {
+  let query = {_id: id};
+  let update = {
+    title: req.body.title,
+    description: req.body.description,
+    package_contents: req.body.package_contents,
+    image_url: req.body.image_url,
+    price: req.body.price,
+    likes: req.body.likes,
+    posts: req.body.posts,
+    friends: req.body.friends
+  }
+  Product.findOneAndUpdate(query, update, options, callback);
+}
+
+
 //updates activity.
 module.exports.updateProductReviews = function(id, product, options, callback){
   var query = {_id: id};

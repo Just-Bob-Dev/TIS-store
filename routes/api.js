@@ -53,6 +53,17 @@ router.post('/products', function(req, res){
 
 router.put('/products/:productId', function(req, res){
   let proId = req.params.productId;
+  let productUpdate = req.body;
+  Product.updateProduct(proId, productUpdate, {}, function(err, productUpdate){
+    if(err){
+      console.log(err);
+    }
+    res.json(productUpdate);
+  })
+})
+
+router.put('/products/reviews/:productId', function(req, res){
+  let proId = req.params.productId;
   let productReview = req.body;
   Product.updateProductReviews(proId, productReview, {}, function(err, productReview){
     if(err){
