@@ -5,6 +5,7 @@ mongoose.Promise = require('bluebird');
 const bodyParser = require('body-parser');
 const apiRouter = require("./routes/api");
 const Product = require('./models/product.js');
+const Comment = require('./models/comments.js')
 const app = express();
 
 mongoose.connect('mongodb://bobHutch:zembs@ds129003.mlab.com:29003/zoes-before-bros');
@@ -14,12 +15,17 @@ app.use(bodyParser.urlencoded({extended: false}));
 app.use(express.static('./public'));
 app.use('/api', apiRouter);
 
-app.user(function(req, res, next){
+app.use(function(req, res, next){
   res.setHeader('Access-Control-Allow-Origin', '*');
   res.setHeader('Access-Control-Allow-Credentials', 'true');
   res.setHeader('Access-Control-Allow-Methods', 'GET, HEAD, OPTIONS, POST, PUT, DELETE');
   res.seetHeader('Access-Control-Allow-Headers', 'Access-Control-Allow-Headers, Origin, Accept, X-Requested-With, Content-Type, Access-Control-Request-Method, Access-Control-Request-Headers');
-  
+
+})
+
+Comment.create({
+  author: "Robert Hutchins",
+  text: "Hey, look at me"
 })
 
 app.get('/', function(req, res){
