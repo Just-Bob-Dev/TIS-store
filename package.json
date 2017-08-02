@@ -4,7 +4,8 @@
   "description": "Database to be used for NuU store",
   "main": "index.js",
   "scripts": {
-    "test": "ls"
+    "test": "ls",
+    "start": "node app.js"
   },
   "author": "Robert, Ethan, Zoe, Michael, SamWell",
   "license": "ISC",
