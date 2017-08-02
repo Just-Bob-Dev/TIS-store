@@ -39,12 +39,6 @@ router.post('/products', function(req, res){
     likes: likes,
     posts: posts,
     friends: friends,
-    reviews: [
-    {
-      name: name,
-      rating: rating,
-      review: review
-    }]
   }
   ).then(function(){
     res.redirect('/api/products');
