@@ -44,7 +44,12 @@ router.put('/comments/:commentId', function(req, res){
     if(err){
       res.send(err);
     }
-    res.json({message: 'Comment has been updated'});
+    (req.body.author) ? comment.author = req.body.author : null;
+    (req.body.text) ? comment.text = req.body.text : null;
+    comment.save(function(err) {
+      if(err) res.send(err);
+      res.json({message: 'Comment has been updated'});
+    })
   });
 })
 
