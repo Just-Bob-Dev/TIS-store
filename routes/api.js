@@ -61,70 +61,56 @@ router.delete('/comments/:commentId', function(req, res) {
     res.json({message: 'Comment has been deleted'})
   });
 })
+//This is the end of the comment practice section.
 
 router.post('/products', function(req, res){
-  var title = req.body.name;
-  var desc = req.body.description;
-  var package_contents = req.body.package_contents;
-  let image_url = req.body.image_url;
-  let price = req.body.price;
-  let likes = req.body.likes;
-  let posts = req.body.posts;
-  let friends = req.body.friends;
-  let name = req.body.name;
-  let rating = req.body.rating;
-  let review = req.body.review
-  console.log(title);
-
-  Product.create({
-    title: title,
-    description: desc,
-    package_contents: package_contents,
-    image_url: image_url,
-    price: price,
-    likes: likes,
-    posts: posts,
-    friends: friends,
-  }
-  ).then(function(){
-    res.redirect('/api/products');
-  })
+   product = new Product();
+   product.title = req.body.name;
+   product.desc = req.body.description;
+   product.package_contents = req.body.package_contents;
+   product.image_url = req.body.image_url;
+   product.price = req.body.price;
+   product.likes = req.body.likes;
+   product.posts = req.body.posts;
+   product.friends = req.body.friends;
+   product.review = [];
+   product.save(function(err) {
+     if(err) {
+       res.send(err);
+     }
+     res.json({message: "A New Product was saved successfully"});
+   });
 });
 
-router.put('/products/:productId', function(req, res){
-  let proId = req.params.productId;
-  let productUpdate = req.body;
-  Product.updateProduct(proId, productUpdate, {}, function(err, productUpdate){
+router.put('/product/:productId', function(req, res){
+  Product.findById(req.params.productId, function(err, product) {
     if(err){
-      console.log(err);
+      res.send(err);
     }
-    res.json(productUpdate);
-  })
+    (req.body.title) ? product.title = req.body.title : null;
+    (req.body.description) ? product.description = req.body.description : null;
+    (req.body.package_contents) ? product.package_contents = req.body.package_contents : null;
+    (req.body.image_url) ? product.image_url = req.body.image_url : null;
+    (req.body.price) ? product.price = req.body.price : null;
+    (req.body.likes) ? product.likes = req.body.likes : null;
+    (req.body.posts) ? product.posts = req.body.posts : null;
+    (req.body.friends) ? product.friends = req.body.friends : null;
+
+    product.save(function(err) {
+      if(err) res.send(err);
+      res.json({message: 'Product has been updated'});
+    })
+  });
 })
 
-router.put('/products/reviews/:productId', function(req, res){
-  let proId = req.params.productId;
-  let productReview = req.body;
-  Product.updateProductReviews(proId, productReview, {}, function(err, productReview){
-    if(err){
-      console.log("This is a PUT error:  " + err);
-    }
-    res.json(productReview);
-  })
-})
 
 router.delete('/products/:productId', function(req, res){
-  console.log("your in the right route.")
-  let proId = req.params.productId;
-  console.log(proId);
-  if (proId.match(/^[0-9a-fA-F]{24}$/)) {
-    Product.remove({_id: proId}).then(function(err){
-      if(err){
-        console.log("Deletion error: " + err);
-      }
-      res.redirect('/api/products');
-    })
-  }
+  Product.delete({_id: req.params.productId}, function(err, product) {
+    if(err){
+      res.send(err);
+    }
+    res.json({"You just deleted a product"});
+  })
 })
 
 

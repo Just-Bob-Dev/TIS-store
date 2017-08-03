@@ -12,9 +12,9 @@ const productSchema = new mongoose.Schema({
   friends: {type: Number, default: null},
   reviews: [
   {
-    name: {type: String, default: null},
-    rating: {type: Number, default: null},
-    review: {type: String, default: null}
+    name: {type: String},
+    rating: {type: Number},
+    review: {type: String}
   }]
 })
 
