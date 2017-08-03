@@ -16,6 +16,7 @@ router.get('/products', function(req, res){
   })
 })
 
+//comments practice to understand pull and pushing infor to a remote repo
 router.get('/comments', function(req, res){
   Comment.getComments(function(err, comment){
     if(err){
@@ -36,6 +37,24 @@ router.post('/comments', function(req, res){
     }
     res.json({message: 'Comment successfully Added!'});
   })
+})
+
+router.put('/comments/:commentId', function(req, res){
+  Comment.findById(req.params.commentId, function(err, comment) {
+    if(err){
+      res.send(err);
+    }
+    res.json({message: 'Comment has been updated'});
+  });
+})
+
+router.delete('/comments/:commentId', function(req, res) {
+  Comment.remove({_id: req.params.commentId}, function(err, comment) {
+    if(err){
+      res.send(err);
+    }
+    res.json({message: 'Comment has been deleted'})
+  });
 })
 
 router.post('/products', function(req, res){
