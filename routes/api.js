@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 const path = require('path');
 const Product = require('../models/product.js');
-
+const Comment = require('../models/comments.js');
 
 router.use(express.static(path.join(__dirname, 'public')));
 
@@ -13,6 +13,28 @@ router.get('/products', function(req, res){
       res.send(err);
     }
     res.json(product);
+  })
+})
+
+router.get('/comments', function(req, res){
+  Comment.getComments(function(err, comment){
+    if(err){
+      res.send(err);
+    }
+    res.json(comment);
+  })
+})
+
+router.post('/comments', function(req, res){
+  var comment = new Comment();
+  comment.author = req.body.author;
+  comment.text = req.body.text;
+
+  comment.save(function(err) {
+    if(err){
+    res.send(err);
+    }
+    res.json({message: 'Comment successfully Added!'});
   })
 })
 

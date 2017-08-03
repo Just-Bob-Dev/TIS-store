@@ -8,3 +8,7 @@ const commentSchema = new mongoose.Schema({
 const Comment = mongoose.model('Comment', commentSchema);
 
 module.exports = Comment;
+
+module.exports.getComments = function(callback, limit){
+  Comment.find(callback).limit(limit);
+}

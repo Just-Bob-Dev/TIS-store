@@ -23,10 +23,6 @@ app.use(function(req, res, next){
 
 })
 
-Comment.create({
-  author: "Robert Hutchins",
-  text: "Hey, look at me"
-})
 
 app.get('/', function(req, res){
   res.send("it's working");
