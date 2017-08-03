@@ -2,10 +2,10 @@
 const mongoose = require('mongoose');
 
 const productSchema = new mongoose.Schema({
-  title: {type: String, required: true, default: null },
-  description: {type: String, required: true, default: null},
+  title: {type: String, default: null },
+  description: {type: String, default: null},
   package_contents: {type: String, default: null},
-  image_url: {type: String, required: true, default: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTX83KKLcFGrsJsl2HnrCLHqUms9EPa6YxNxjvBj-xyJZjscF5c"},
+  image_url: {type: String, default: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTX83KKLcFGrsJsl2HnrCLHqUms9EPa6YxNxjvBj-xyJZjscF5c"},
   price: {type: Number, default: null},
   likes: {type: Number, default: null},
   posts: {type: Number, default: null},
