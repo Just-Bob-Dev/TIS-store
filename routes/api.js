@@ -65,7 +65,7 @@ router.delete('/comments/:commentId', function(req, res) {
 
 router.post('/products', function(req, res){
    product = new Product();
-   product.title = req.body.name;
+   product.title = req.body.title;
    product.desc = req.body.description;
    product.package_contents = req.body.package_contents;
    product.image_url = req.body.image_url;
