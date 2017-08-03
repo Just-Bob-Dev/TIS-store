@@ -109,8 +109,8 @@ router.delete('/products/:productId', function(req, res){
     if(err){
       res.send(err);
     }
-    res.json({"You just deleted a product"});
-  })
+    res.json({message: "You just deleted a product"})
+  });
 })
 
 
