@@ -1,17 +1,117 @@
-var NuUData =
+Like.insertMany([
 {
-  results : [
+  option: "10-20",
+  price: "10.00"
+},
+{
+  option: "20-30",
+  price: "15.00"
+},
+{
+  option: "30-40",
+  price: "20.00"
+},
+{
+  option: "50-75",
+  price: "30.00"
+},
+{
+  option: "75-100",
+  price: "40.00"
+}
+]);
+
+Friend.insertMany([
+{
+  option: "200-400",
+  price: "15.00"
+},
+{
+  option: "400-600",
+  price: "20.00"
+},
+{
+  option: "600-800",
+  price: "25.00"
+},
+{
+  option: "800-1000",
+  price: "30.00"
+},
+{
+  option: "1000-1500",
+  price: "50.00"
+},
+{
+  option: "1500-3000",
+  price: "75.00"
+}
+]);
+
+
+Post.insertMany([
   {
-    title: "Lumber Jack",
-    description: "Rather than be clean-shaven, the Lumbersexual has an unkempt beard. The Metrosexual is clean and pretty and well-groomed; the Lumbersexual spends the same amount of money, but looks filthy. Sartorially speaking, a Lumbersexual is a delicate tri-blend of L.L. Bean, Timberlake, and Sears.",
-    image_url: "https://www.google.com/url?sa=i&rct=j&q=&esrc=s&source=images&cd=&cad=rja&uact=8&ved=0ahUKEwiZipipybbVAhURayYKHWCzAlYQjRwIBw&url=https%3A%2F%2Fwww.youtube.com%2Fwatch%3Fv%3Dp9hluLlBBsk&psig=AFQjCNFnjSh9Z13mZ0Oo-veCtYkd9T2MdQ&ust=1501695363916496"
+    option: "1-3",
+    price: "10.00"
   },
   {
-    title: "Hipster",
-    description: "Hipsters are a subculture of men and women typically in their 20's and 30's that value independent thinking, counter-culture, progressive politics, an appreciation of art and indie-rock, creativity, intelligence, and witty banter. The greatest concentrations of hipsters can be found living in the Williamsburg, Wicker Park, and Mission District neighborhoods of major cosmopolitan centers such as New York, Chicago, and San Francisco respectively",
-    image_url: "https://www.google.com/url?sa=i&rct=j&q=&esrc=s&source=images&cd=&cad=rja&uact=8&ved=0ahUKEwiWz76uyrbVAhVH6yYKHXAYAtQQjRwIBw&url=https%3A%2F%2Fwww.theodysseyonline.com%2Fwhat-actually-hipster&psig=AFQjCNG_U5UZEClHifNVIYgTRE-bBJMuzg&ust=1501695604132203"
+    option: "4-6",
+    price: "15.00"
+  },
+  {
+    option: "8-10",
+    price: "20.00"
+  },
+  {
+    option: "10-12",
+    price: "30.00"
+  },
+  {
+    option: "12-15",
+    price: "40.00"
   }
-  ]
-}
+]);
 
-export NuUData;
+
+Comment.insertMany([
+{
+  option: "1-5",
+  price: "5.00"
+},
+{
+  option: "5-7",
+  price: "10.00"
+},
+{
+  option: "8-10",
+  price: "12.00"
+},
+{
+  option: "11-13",
+  price: "15.00"
+},
+{
+  option: "14-19",
+  price: "17.00"
+}
+]);
+
+
+Options.insertMany([
+  {
+    label: "How many friends do Ü have?",
+    optionPull: "Friend"
+  },
+  {
+    label: "How may likes do Ür posts get?",
+    optionPull: "Like"
+  },
+  {
+    label: "How often do Ü post a day?",
+    optionPull: "Post"
+  },
+  {
+    label: "How many comments do Ür posts recieve?",
+    optionPull: "Comment"
+  }
+])
