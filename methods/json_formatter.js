@@ -71,6 +71,7 @@ function buildReviewLayout(object, res, callback) {
   for (var i = 0; i < object.Reviews.length; i++) {
     let parentId = JSON.stringify(object.Reviews[i].parent_id);
     zsonObj.Reviews[i] = {
+      _id: object.Reviews[i]._id,
       name: object.Reviews[i].name,
       rating: object.Reviews[i].rating,
       review: object.Reviews[i].review,
