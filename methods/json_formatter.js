@@ -83,7 +83,7 @@ function buildReviewLayout(object, res, callback) {
         let temp = {
           title: object.Products[n].title
         }
-          zsonObj.Reviews[i].reviews = temp ;
+          zsonObj.Reviews[i].package = temp ;
       }
     }
     //console.log(zsonObj);
