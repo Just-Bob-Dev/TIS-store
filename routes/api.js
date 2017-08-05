@@ -9,67 +9,69 @@ const Like = require('../models/likes.js');
 const Review = require('../models/reviews.js');
 const Option = require('../models/options.js')
 const ObjectID = require('mongodb').ObjectID;
+const json_formatter = require('../methods/json_formatter.js');
 
-function buildOptionLayout(object, res, callback) {
-  while(object.length === 0){
-    let i = 0;
-  }
-  console.log("after while loop");
-  console.log(object.length);
-  let json = object;
-  let tempObj = {};
-  tempObj.questions = object.questions;
-  console.log('we are in build');
-  for(let i = 0; i < json.questions.length; i++){
-    console.log(json.questions.optionPull);
-    if(json.questions[i].optionPull === "Likes"){
-      tempObj.questions[i] = {
-        _id: json.questions[i]._id,
-        label: json.questions[i].label,
-        optionPull: json.questions[i].optionPull,
-        __v: json.questions[i].__v,
-        options: []
-      }
-      tempObj.questions[i].options = json.Likes;
-      console.log(tempObj);
-    }
-    else if(json.questions[i].optionPull === "Friends"){
-      tempObj.questions[i] = {
-        _id: json.questions[i]._id,
-        label: json.questions[i].label,
-        optionPull: json.questions[i].optionPull,
-        __v: json.questions[i].__v,
-        options: []
-      }
-      tempObj.questions[i].options = json.Friends;
-      console.log(tempObj);
-    }
-    else if(json.questions[i].optionPull === "Posts"){
-      tempObj.questions[i] = {
-        _id: json.questions[i]._id,
-        label: json.questions[i].label,
-        optionPull: json.questions[i].optionPull,
-        __v: json.questions[i].__v,
-        options: []
-      }
-      tempObj.questions[i].options = json.Posts;
-      console.log(tempObj);
-    }
-    else if(json.questions[i].optionPull === "Comments"){
-      tempObj.questions[i] = {
-        _id: json.questions[i]._id,
-        label: json.questions[i].label,
-        optionPull: json.questions[i].optionPull,
-        __v: json.questions[i].__v,
-        options: []
-      }
-      tempObj.questions[i].options = json.Comments;
-      console.log(tempObj);
-    }
-  }
-  console.log(tempObj);
-  callback(res, tempObj);
-}
+
+// function buildOptionLayout(object, res, callback) {
+//   while(object.length === 0){
+//     let i = 0;
+//   }
+//   console.log("after while loop");
+//   console.log(object.length);
+//   let json = object;
+//   let tempObj = {};
+//   tempObj.questions = object.questions;
+//   console.log('we are in build');
+//   for(let i = 0; i < json.questions.length; i++){
+//     console.log(json.questions.optionPull);
+//     if(json.questions[i].optionPull === "Likes"){
+//       tempObj.questions[i] = {
+//         _id: json.questions[i]._id,
+//         label: json.questions[i].label,
+//         optionPull: json.questions[i].optionPull,
+//         __v: json.questions[i].__v,
+//         options: []
+//       }
+//       tempObj.questions[i].options = json.Likes;
+//       console.log(tempObj);
+//     }
+//     else if(json.questions[i].optionPull === "Friends"){
+//       tempObj.questions[i] = {
+//         _id: json.questions[i]._id,
+//         label: json.questions[i].label,
+//         optionPull: json.questions[i].optionPull,
+//         __v: json.questions[i].__v,
+//         options: []
+//       }
+//       tempObj.questions[i].options = json.Friends;
+//       console.log(tempObj);
+//     }
+//     else if(json.questions[i].optionPull === "Posts"){
+//       tempObj.questions[i] = {
+//         _id: json.questions[i]._id,
+//         label: json.questions[i].label,
+//         optionPull: json.questions[i].optionPull,
+//         __v: json.questions[i].__v,
+//         options: []
+//       }
+//       tempObj.questions[i].options = json.Posts;
+//       console.log(tempObj);
+//     }
+//     else if(json.questions[i].optionPull === "Comments"){
+//       tempObj.questions[i] = {
+//         _id: json.questions[i]._id,
+//         label: json.questions[i].label,
+//         optionPull: json.questions[i].optionPull,
+//         __v: json.questions[i].__v,
+//         options: []
+//       }
+//       tempObj.questions[i].options = json.Comments;
+//       console.log(tempObj);
+//     }
+//   }
+//   console.log(tempObj);
+//   callback(res, tempObj);
+// }
 
 
 
@@ -145,11 +147,25 @@ router.get("/options-labels",function(req, res) {
             json.Friends = friend;
             console.log(json);
 
-            buildOptionLayout(json, res, function(res, response) {
+            json_formatter.buildOptionLayout(json, res, function(res, response) {
               res.json({results: response});
             })
           })
         })
+      })
+    })
+  })
+})
+
+//Zoes custom endpoint!
+var zson = {}
+router.get ('/product-reviews',function(req, res) {
+  Review.find(function(err, review) {
+    Product.find(function(err, product){
+      zson.Reviews = review;
+      zson.Products = product;
+      json_formatter.buildReviewLayout(zson, res, function(res, response) {
+        res.json({results: response});
       })
     })
   })

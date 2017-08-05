@@ -115,3 +115,50 @@ Options.insertMany([
     optionPull: "Comment"
   }
 ])
+
+
+Review.insertMany([
+  {
+    name: "David Charleston",
+    rating: 3,
+    review: "I used to live at home...well I still do but no one knows. I love this product because it makes me look like I have a job!"
+    parent_id: "5983c93fe8fa7f00114b3111"
+  },
+  {
+    name: "Jessica Branson",
+    rating: 5,
+    review: "I always wanted a picture with flanel on.",
+    parent_id: "5981c536797225812c45bf69"
+  },
+  {
+    name: "Renea Carelton",
+    rating: 5,
+    review: "I always wanted a picture with flanel on.",
+    parent_id:  "5981c536797225812c45bf69"
+  },
+  {
+    name: "Robert Carlson",
+    rating: 4,
+    review: "I always wanted to be the mother of dragons and now everyone thinks I am!",
+    parent_id: "5981df27e085b5864ddff71a"
+  },
+  {
+    name: "Cersi Lanister",
+    rating: 5,
+    review: "People finally like me.",
+    parent_id: "5981df27e085b5864ddff71a"
+  },
+  {
+    name: "Jess Devoe",
+    rating: 5,
+    review: "Art has always been my passion, NuÜ helped me look more credible and I landed my dream job.",
+    parent_id: "5983cc4ee8fa7f00114b3112"
+  },
+  {
+    name: "Lenny Boston",
+    rating: 4,
+    review: "I was always laid back but I felt that people didn't really know how laid back I was. This package make me the guy everyone talks about around the water cooler. I couldn't be happier.",
+    parent_id: "5983d103e8fa7f00114b3114"
+  }
+
+]);
