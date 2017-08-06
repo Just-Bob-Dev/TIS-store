@@ -2,6 +2,7 @@ const mongoose = require('mongoose');
 
 const optionSchema = new mongoose.Schema({
   label: {type: String},
+  id:{type: String},
   optionPull: {type: String}
 })
 

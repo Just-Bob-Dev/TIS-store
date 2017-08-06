@@ -13,6 +13,7 @@ function buildOptionLayout(object, res, callback) {
     if(json.questions[i].optionPull === "Likes"){
       tempObj.questions[i] = {
         _id: json.questions[i]._id,
+        id: json.questions[i].id,
         label: json.questions[i].label,
         optionPull: json.questions[i].optionPull,
         __v: json.questions[i].__v,
@@ -24,6 +25,7 @@ function buildOptionLayout(object, res, callback) {
     else if(json.questions[i].optionPull === "Friends"){
       tempObj.questions[i] = {
         _id: json.questions[i]._id,
+        id: json.questions[i].id,
         label: json.questions[i].label,
         optionPull: json.questions[i].optionPull,
         __v: json.questions[i].__v,
@@ -35,6 +37,7 @@ function buildOptionLayout(object, res, callback) {
     else if(json.questions[i].optionPull === "Posts"){
       tempObj.questions[i] = {
         _id: json.questions[i]._id,
+        id: json.questions[i].id,
         label: json.questions[i].label,
         optionPull: json.questions[i].optionPull,
         __v: json.questions[i].__v,
@@ -46,6 +49,7 @@ function buildOptionLayout(object, res, callback) {
     else if(json.questions[i].optionPull === "Comments"){
       tempObj.questions[i] = {
         _id: json.questions[i]._id,
+        id: json.questions[i].id,
         label: json.questions[i].label,
         optionPull: json.questions[i].optionPull,
         __v: json.questions[i].__v,
