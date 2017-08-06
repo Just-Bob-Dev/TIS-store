@@ -2,10 +2,10 @@
 const mongoose = require('mongoose');
 
 const productSchema = new mongoose.Schema({
-  title: {type: String, default: null },
+  title: {type: String, default: null},
   description: {type: String, default: null},
   package_contents: {type: String, default: null},
-  image_url: {type: String, default:null },
+  image_url: {type: String, default: null},
   price: {type: String, default: null},
   likes: {type: String, default: null},
   posts: {type: String, default: null},
@@ -27,8 +27,8 @@ module.exports.getProductById = function(id, callback){
 }
 
 //Creates a new activity
-module.exports.createProduct = function(activity, callback){
-  Product.create(activity, callback);
+module.exports.createProduct = function(product, callback){
+  Product.create(product, callback);
 }
 
 module.exports.updateProduct = function(id, product, options, callback) {

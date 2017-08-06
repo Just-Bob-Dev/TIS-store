@@ -11,12 +11,17 @@ const Like = require("./models/likes.js");
 const Comment = require('./models/comment.js');
 const Option = require('./models/options.js');
 const Review = require('./models/reviews.js');
+const expressValidator = require('express-validator');
 const app = express();
 
-mongoose.connect('mongodb://bobHutch:zembs@ds129003.mlab.com:29003/zoes-before-bros');
-var db = mongoose.connection;
+
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
+app.use(expressValidator ());
+mongoose.connect('mongodb://bobHutch:zembs@ds129003.mlab.com:29003/zoes-before-bros');
+var db = mongoose.connection;
+
+
 app.use(express.static('./public'));
 app.use('/api', apiRouter);
 
@@ -24,8 +29,7 @@ app.use(function(req, res, next){
   res.setHeader('Access-Control-Allow-Origin', '*');
   res.setHeader('Access-Control-Allow-Credentials', 'true');
   res.setHeader('Access-Control-Allow-Methods', 'GET, HEAD, OPTIONS, POST, PUT, DELETE');
-  res.seetHeader('Access-Control-Allow-Headers', 'Access-Control-Allow-Headers, Origin, Accept, X-Requested-With, Content-Type, Access-Control-Request-Method, Access-Control-Request-Headers');
-
+  res.setHeader('Access-Control-Allow-Headers', 'Access-Control-Allow-Headers, Origin, Accept, X-Requested-With, Content-Type, Access-Control-Request-Method, Access-Control-Request-Headers');
 })
 
 

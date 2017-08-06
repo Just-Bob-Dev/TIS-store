@@ -1,5 +1,6 @@
 const express = require('express');
 const router = express.Router();
+const bodyParser = require('body-parser');
 const path = require('path');
 const Product = require('../models/product.js');
 const Comment = require('../models/comment.js');
@@ -12,70 +13,8 @@ const ObjectID = require('mongodb').ObjectID;
 const json_formatter = require('../methods/json_formatter.js');
 
 
-// function buildOptionLayout(object, res, callback) {
-//   while(object.length === 0){
-//     let i = 0;
-//   }
-//   console.log("after while loop");
-//   console.log(object.length);
-//   let json = object;
-//   let tempObj = {};
-//   tempObj.questions = object.questions;
-//   console.log('we are in build');
-//   for(let i = 0; i < json.questions.length; i++){
-//     console.log(json.questions.optionPull);
-//     if(json.questions[i].optionPull === "Likes"){
-//       tempObj.questions[i] = {
-//         _id: json.questions[i]._id,
-//         label: json.questions[i].label,
-//         optionPull: json.questions[i].optionPull,
-//         __v: json.questions[i].__v,
-//         options: []
-//       }
-//       tempObj.questions[i].options = json.Likes;
-//       console.log(tempObj);
-//     }
-//     else if(json.questions[i].optionPull === "Friends"){
-//       tempObj.questions[i] = {
-//         _id: json.questions[i]._id,
-//         label: json.questions[i].label,
-//         optionPull: json.questions[i].optionPull,
-//         __v: json.questions[i].__v,
-//         options: []
-//       }
-//       tempObj.questions[i].options = json.Friends;
-//       console.log(tempObj);
-//     }
-//     else if(json.questions[i].optionPull === "Posts"){
-//       tempObj.questions[i] = {
-//         _id: json.questions[i]._id,
-//         label: json.questions[i].label,
-//         optionPull: json.questions[i].optionPull,
-//         __v: json.questions[i].__v,
-//         options: []
-//       }
-//       tempObj.questions[i].options = json.Posts;
-//       console.log(tempObj);
-//     }
-//     else if(json.questions[i].optionPull === "Comments"){
-//       tempObj.questions[i] = {
-//         _id: json.questions[i]._id,
-//         label: json.questions[i].label,
-//         optionPull: json.questions[i].optionPull,
-//         __v: json.questions[i].__v,
-//         options: []
-//       }
-//       tempObj.questions[i].options = json.Comments;
-//       console.log(tempObj);
-//     }
-//   }
-//   console.log(tempObj);
-//   callback(res, tempObj);
-// }
-
-
-
-
+router.use(bodyParser.json());
+router.use(bodyParser.urlencoded({extended: false}));
 router.use(express.static(path.join(__dirname, 'public')));
 
 //GET for products/likes/comments/friends/options/posts/ reviews/ and users.
@@ -171,58 +110,64 @@ router.get ('/product-reviews',function(req, res) {
   })
 })
 
+
+//POST routes below for api
+router.post('/reviews', function(req, res) {
+  let review = req.body;
+  console.log(review);
+  res.send({review});
+})
+
+
 router.post('/products', function(req, res){
-   product = new Product();
-   product.title = req.body.title;
-   product.desc = req.body.description;
-   product.package_contents = req.body.package_contents;
-   product.image_url = req.body.image_url;
-   product.price = req.body.price;
-   product.likes = req.body.likes;
-   product.posts = req.body.posts;
-   product.friends = req.body.friends;
-   product.save(function(err) {
-     if(err) {
-       res.send(err);
-     }
-     res.json({message: "A New Product was saved successfully"});
-   });
+  let product = new Product();
+  product.title = req.body.title;
+  product.description = req.body.description;
+  product.package_contents
+   = req.body.package_contents;
+  product.image_url = req.body.image_url;
+  product.price = req.body.price;
+  product.likes = req.body.likes;
+  product.posts = req.body.posts;
+  product.friends = req.body.friends;
+  console.log(product);
+  product.save(function(err) {
+    res.send({product});
+  });
 });
 
-router.put('/product/:productId', function(req, res){
+//Update Product Information
+router.put('/products/:productId', function(req, res){
   Product.findById(req.params.productId, function(err, product) {
     if(err){
       res.send(err);
     }
-    (req.body.title) ? product.title = req.body.title : null;
-    (req.body.description) ? product.description = req.body.description : null;
-    (req.body.package_contents) ? product.package_contents = req.body.package_contents : null;
-    (req.body.image_url) ? product.image_url = req.body.image_url : null;
-    (req.body.price) ? product.price = req.body.price : null;
-    (req.body.likes) ? product.likes = req.body.likes : null;
-    (req.body.posts) ? product.posts = req.body.posts : null;
-    (req.body.friends) ? product.friends = req.body.friends : null;
+    product.title = req.body.title;
+    product.description = req.body.description;
+    product.package_contents = req.body.package_contents;
+    product.image_url = req.body.image_url;
+    product.price = req.body.price;
+    product.likes = req.body.likes;
+    product.posts = req.body.posts;
+    product.friends = req.body.friends;
 
     product.save(function(err) {
       if(err) res.send(err);
-      res.json({message: 'Product has been updated'});
+      res.json({product});
     })
   });
 })
 
-
+//delete function for products
 router.delete('/products/:productId', function(req, res){
-  Product.delete({_id: req.params.productId}, function(err, product) {
+  Product.remove({_id: req.params.productId}, function(err, product) {
     if(err){
       res.send(err);
     }
-    res.json({message: "You just deleted a product"})
+    res.json({message: "you just deleted the product with this id: " + req.params.productId});
   });
 })
 
-router.get('/options', function(req, res) {
-  Option
-})
 
 
 
