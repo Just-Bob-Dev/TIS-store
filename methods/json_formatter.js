@@ -14,6 +14,9 @@ function buildOptionLayout(object, res, callback) {
       tempObj.questions[i] = {
         _id: json.questions[i]._id,
         id: json.questions[i].id,
+        image_before: json.questions[i].image_before,
+        image_after: json.questions[i].image_after,
+        product_description: json.questions[i].product_description,
         label: json.questions[i].label,
         optionPull: json.questions[i].optionPull,
         __v: json.questions[i].__v,
@@ -26,6 +29,9 @@ function buildOptionLayout(object, res, callback) {
       tempObj.questions[i] = {
         _id: json.questions[i]._id,
         id: json.questions[i].id,
+        image_before: json.questions[i].image_before,
+        image_after: json.questions[i].image_after,
+        product_description: json.questions[i].product_description,
         label: json.questions[i].label,
         optionPull: json.questions[i].optionPull,
         __v: json.questions[i].__v,
@@ -38,6 +44,9 @@ function buildOptionLayout(object, res, callback) {
       tempObj.questions[i] = {
         _id: json.questions[i]._id,
         id: json.questions[i].id,
+        image_before: json.questions[i].image_before,
+        image_after: json.questions[i].image_after,
+        product_description: json.questions[i].product_description,
         label: json.questions[i].label,
         optionPull: json.questions[i].optionPull,
         __v: json.questions[i].__v,
@@ -50,6 +59,9 @@ function buildOptionLayout(object, res, callback) {
       tempObj.questions[i] = {
         _id: json.questions[i]._id,
         id: json.questions[i].id,
+        image_before: json.questions[i].image_before,
+        image_after: json.questions[i].image_after,
+        product_description: json.questions[i].product_description,
         label: json.questions[i].label,
         optionPull: json.questions[i].optionPull,
         __v: json.questions[i].__v,
