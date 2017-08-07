@@ -142,14 +142,14 @@ router.put('/products/:productId', function(req, res){
     if(err){
       res.send(err);
     }
-    product.title = req.body.title;
-    product.description = req.body.description;
-    product.package_contents = req.body.package_contents;
-    product.image_url = req.body.image_url;
-    product.price = req.body.price;
-    product.likes = req.body.likes;
-    product.posts = req.body.posts;
-    product.friends = req.body.friends;
+    product.title = req.body.title || product.title;
+    product.description = req.body.description || product.description;
+    product.package_contents = req.body.package_contents || product.package_contents;
+    product.image_url = req.body.image_url || product.image_url;
+    product.price = req.body.price || product.price;
+    product.likes = req.body.likes || product.likes;
+    product.posts = req.body.posts || product.posts;
+    product.friends = req.body.friends || product.friends;
 
     product.save(function(err) {
       if(err) res.send(err);
