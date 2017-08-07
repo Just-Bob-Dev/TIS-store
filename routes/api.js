@@ -113,9 +113,15 @@ router.get ('/product-reviews',function(req, res) {
 
 //POST routes below for api
 router.post('/reviews', function(req, res) {
-  let review = req.body;
+  let review = new Review();
+  review.name = req.body.name;
+  review.rating = req.body.rating;
+  review.review = req.body.review;
+  review.parent_id = req.body.parent_id;
   console.log(review);
-  res.send({review});
+  review.save(function(err) {
+    res.send({review});
+  })
 })
 
 
