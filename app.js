@@ -14,16 +14,9 @@ const Review = require('./models/reviews.js');
 const expressValidator = require('express-validator');
 const app = express();
 
-
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({extended: false}));
-app.use(expressValidator ());
 mongoose.connect('mongodb://bobHutch:zembs@ds129003.mlab.com:29003/zoes-before-bros');
 var db = mongoose.connection;
 
-
-app.use(express.static('./public'));
-app.use('/api', apiRouter);
 
 app.use(function(req, res, next){
   res.setHeader('Access-Control-Allow-Origin', '*');
@@ -33,6 +26,12 @@ app.use(function(req, res, next){
 })
 
 
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({extended: false}));
+app.use(expressValidator ());
+
+app.use(express.static('./public'));
+app.use('/api', apiRouter);
 
 app.get('/', function(req, res){
   res.send("it's working");
