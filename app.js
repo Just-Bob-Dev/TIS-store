@@ -17,6 +17,7 @@ const app = express();
 mongoose.connect('mongodb://bobHutch:zembs@ds129003.mlab.com:29003/zoes-before-bros');
 var db = mongoose.connection;
 
+const methodOverride = require('method-override');
 
 app.use(function(req, res, next){
   res.setHeader('Access-Control-Allow-Origin', '*');
